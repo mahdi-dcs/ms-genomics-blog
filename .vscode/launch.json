@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "RESOURCE_GROUP": "blog-genomics",
+                "POOL_ID": "your_pool_id",
+                "BATCH_ACCOUNT_URL": "https://your_batch_account_url",
+                "STORAGE_ACCOUNT": "your_storage_account_name",
+
+                "LOCAL_FOLDER_PATH": "${workspaceFolder}/nextflow",
+            }
+        }
+    ]
+}

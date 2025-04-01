@@ -1,0 +1,6 @@
+{
+  "$schema": "https://aka.ms/bicep-registry-module-metadata-file-schema-v2#",
+  "name": "Azure Key Vault",
+  "summary": "Bicep module to simplify deployment of an Azure Key Vault.",
+  "owner": "PHSA"
+}

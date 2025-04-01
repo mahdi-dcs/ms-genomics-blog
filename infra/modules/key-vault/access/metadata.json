@@ -1,0 +1,6 @@
+{
+  "$schema": "https://aka.ms/bicep-registry-module-metadata-file-schema-v2#",
+  "name": "Azure Key Vault Access Permissions",
+  "summary": "Bicep module to set Azure Key Vault access permissions for a given principal.",
+  "owner": "PHSA"
+}
