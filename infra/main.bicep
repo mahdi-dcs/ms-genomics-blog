@@ -115,17 +115,6 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: kvName
 }
 
-resource acrPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
-  name: acrPasswordSecretName
-  parent: keyVault
-  properties: {
-    value: acrResource.listCredentials().passwords[0].value
-  }
-  dependsOn: [
-    acrPrivateEndpoint
-  ]
-}
-
 // Azure Container Registry
 resource acrResource 'Microsoft.ContainerRegistry/registries@2023-07-01' =  {
   name: containerRegistryName
@@ -193,10 +182,19 @@ module acrRoleAssignment 'modules/roles/main.bicep' = {
   }
 }
 
+// Secrets
+
 resource batchAccount 'Microsoft.Batch/batchAccounts@2024-02-01' existing = {
   name: batchAccountName
   dependsOn: [
     batchAccountModule
+  ]
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2024-01-01' existing = {
+  name: storageAccountName
+  dependsOn: [
+    storage
   ]
 }
 
@@ -211,13 +209,6 @@ resource secretResourcesBatchKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01' 
   ]
 }
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2024-01-01' existing = {
-  name: storageAccountName
-  dependsOn: [
-    storage
-  ]
-}
-
 resource secretResourcesStorageKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   name: 'storage-account-key'
   parent: keyVault
@@ -226,5 +217,16 @@ resource secretResourcesStorageKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01
   }
   dependsOn: [
     storageAccount
+  ]
+}
+
+resource acrPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
+  name: acrPasswordSecretName
+  parent: keyVault
+  properties: {
+    value: acrResource.listCredentials().passwords[0].value
+  }
+  dependsOn: [
+    acrPrivateEndpoint
   ]
 }
