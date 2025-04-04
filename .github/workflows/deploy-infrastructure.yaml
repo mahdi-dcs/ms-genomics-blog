@@ -29,4 +29,5 @@ jobs:
         failOnStdErr: false
         scope: subscription
         deploymentName: ${{ github.run_number}}
+        region: canadacentral
         # parameters: './deploy/parameters/prod.parameters.json'
