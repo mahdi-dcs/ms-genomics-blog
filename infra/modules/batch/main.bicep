@@ -1,4 +1,3 @@
-
 @description('The target environment for the resources to be deployed.')
 param targetEnv string
 
@@ -295,3 +294,4 @@ resource batchAccounts_pool_STANDARD_DC1s_V2 'Microsoft.Batch/batchAccounts/pool
 
 output batchPoolId string = batchAccounts_pool_Standard_D4_v3.id
 output batchPoolName string = batchPoolName
+output batchAccountId string = batchAccount.id

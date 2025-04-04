@@ -57,3 +57,7 @@ Following resources are assumed to exist as part of an Enterprise Landing Zone:
   - Blob Data Contributor/Owner role is required to run this script.
   - 
 
+## Improvement Opportunities
+
+- Use managed identity in Nextflow Config instead of secrets.
+- 

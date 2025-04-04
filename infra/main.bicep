@@ -191,4 +191,38 @@ module acrRoleAssignment 'modules/roles/main.bicep' = {
   }
 }
 
+resource batchAccount 'Microsoft.Batch/batchAccounts@2024-02-01' existing = {
+  name: batchAccountName
+  dependsOn: [
+    batchAccountModule
+  ]
+}
 
+resource secretResourcesBatchKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+  name: 'batch-account-key'
+  parent: keyVault
+  properties: {
+    value: batchAccount.listKeys().primary
+  }
+  dependsOn: [
+    batchAccount
+  ]
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2024-01-01' existing = {
+  name: storageAccountName
+  dependsOn: [
+    storage
+  ]
+}
+
+resource secretResourcesStorageKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+  name: 'storage-account-key'
+  parent: keyVault
+  properties: {
+    value: storageAccount.listKeys().keys[0].value
+  }
+  dependsOn: [
+    storageAccount
+  ]
+}

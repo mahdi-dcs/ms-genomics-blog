@@ -40,10 +40,12 @@ BATCH_ACCOUNT_URL = os.environ.get('BATCH_ACCOUNT_URL')
 BATCH_ACCOUNT_NAME = os.environ.get('BATCH_ACCOUNT_NAME')
 POOL_ID = os.environ.get('POOL_ID')
 STORAGE_ACCOUNT = os.environ.get('STORAGE_ACCOUNT')
-AUTOSTORAGE_ACCOUNT = os.environ.get('AUTOSTORAGE_ACCOUNT')
+AUTOSTORAGE_ACCOUNT = os.environ.get('AUTOSTORAGE_ACCOUNT_NAME')
 KEYVAULT_NAME = os.environ.get('KEYVAULT_NAME')
 CONTAINER_NAME = "nextflow"
 LOCAL_FOLDER_PATH = os.environ.get('LOCAL_FOLDER_PATH')
+MANAGED_IDENTITY_RESOURCE_ID = os.environ.get('MANAGED_IDENTITY_RESOURCE_ID')
+OUTPUT_PATH= os.environ.get('OUTPUT_PATH')
 
 def submit_job_to_batch(run_name, output_path, pipeline_run_id):
     print(f"Submitting job to Batch for run {run_name}")
@@ -68,8 +70,8 @@ def submit_job_to_batch(run_name, output_path, pipeline_run_id):
     
     # Create resource file for nextflow config
     nf_config_file = ResourceFile(
-        auto_storage_container_name="nextflow",
-        blob_prefix="nextflow-pipeline-source"
+        auto_storage_container_name="nextflow"
+        # blob_prefix="nextflow-pipeline-source"
     )
     
     # Create the task
@@ -77,8 +79,14 @@ def submit_job_to_batch(run_name, output_path, pipeline_run_id):
     
     # Set up container settings
     container_settings = TaskContainerSettings(
-        image_name="genomicsacrdev01.azurecr.io/batch-nf:1.0",
-        registry="genomicsacrdev01.azurecr.io"        
+        container_run_options="",
+        image_name="genomicsacrdev01.azurecr.io/batch-nf:2.0",
+        registry={
+            "registry_server": "genomicsacrdev01.azurecr.io",
+            "identity_reference": {
+                "resource_id": MANAGED_IDENTITY_RESOURCE_ID
+            }
+        }
     )
     
     # Set up user identity
@@ -139,13 +147,13 @@ if not container_client.exists():
     container_client.create_container()
 
 # Upload files in the folder
-# for root, _, files in os.walk(LOCAL_FOLDER_PATH):
-#     for file in files:
-#         file_path = os.path.join(root, file)
-#         blob_name = os.path.relpath(file_path, LOCAL_FOLDER_PATH)
-#         print(f"Uploading {file_path} as {blob_name}...")
-#         with open(file_path, "rb") as data:
-#             container_client.upload_blob(name=blob_name, data=data, overwrite=True)
+for root, _, files in os.walk(LOCAL_FOLDER_PATH):
+    for file in files:
+        file_path = os.path.join(root, file)
+        blob_name = os.path.relpath(file_path, LOCAL_FOLDER_PATH)
+        print(f"Uploading {file_path} as {blob_name}...")
+        with open(file_path, "rb") as data:
+            container_client.upload_blob(name=blob_name, data=data, overwrite=True)
 
 print(f"Folder uploaded successfully to container '{CONTAINER_NAME}'.")
 
@@ -156,7 +164,7 @@ batch_client = BatchServiceClient(batch_credential, batch_url=BATCH_ACCOUNT_URL)
 # Example usage of submit_job_to_batch
 job_id, task_id = submit_job_to_batch(
     run_name="test-run",
-    output_path="/path/to/output",
+    output_path=OUTPUT_PATH,
     pipeline_run_id=str(uuid.uuid4())
 )
 
