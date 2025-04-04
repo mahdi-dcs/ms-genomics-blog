@@ -27,7 +27,7 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./infra/main.bicep
         failOnStdErr: false
-        scope: subscription
+        scope: resourceGroup
         deploymentName: ${{ github.run_number}}
         region: canadacentral
         # parameters: './deploy/parameters/prod.parameters.json'
