@@ -1,0 +1,9 @@
+azure-identity
+azure-cosmos
+azure-communication-email
+azure-mgmt-communication
+azure-keyvault-secrets
+azure-storage-blob
+pandas
+uuid
+datetime

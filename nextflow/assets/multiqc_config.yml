@@ -1,0 +1,344 @@
+custom_logo: './logo.png'
+custom_logo_url: 'https://www.providencelaboratory.org/'
+custom_logo_title: 'Pathology and Labratory Medicine'
+show_analysis_paths: False
+
+report_header_info:
+  - Contact Email: 'GRitchie@providencehealth.bc.ca'
+  - Application Type: 'Providence Health Virology Analytic Pipeline'
+  - Department: 'Pathology and Labratory Medicine, Providence Health Care'
+
+title: Providence Health Virology Analytic Pipeline
+
+disable_version_detection: true
+
+top_modules:
+  - custom_content
+  - snpeff:
+      name: 'Variant'
+      info: 'Variant QC Results'
+  - fastp:
+      name: 'Raw'
+      info: 'Sequencing QC Results'
+  - samtools:
+      name: 'Align'
+      info: 'Alignment QC Results'
+      
+  - mosdepth:
+      name: 'Coverage'
+      info: 'Coverage QC Results'
+
+exclude_modules:
+  - snpeff
+  - samtools
+  - fastp
+  - mosdepth
+
+remove_sections:
+  - mqc-section mqc-section-mosdepth
+  - mosdepth-coverage-dist-cov
+  - mosdepth-coverage-per-contig-id
+  - fastqc_sequence_counts
+  - fastqc_sequence_duplication_levels
+  - fastqc_top_overrepresented_sequences
+  - fastqc_adapter_content
+  - fastp-seq-content-n
+  - fastqc_status_checks
+  - fastqc_overrepresented_sequences
+  - fastqc_per_base_n_content
+  
+
+report_section_order:
+  varlist:
+      order: 1000
+  varlist2:
+      order: 999
+  insertions:
+      order: 998
+  drug_resistance:
+      order: 997
+  multichangecodons:
+      order: 996
+  variantsbyregion:
+      order: 995
+  software_versions:
+    order: -1001
+
+custom_data:
+  seq_freq:
+    id: "seq_freq"
+    file_format: 'txt'
+    section_name: 'BLAST Sequence Frequency'
+    description: 'This is the table of BLAST Search'
+    plot_type: 'table'
+    pconfig:
+        id: 'seq_freq'
+        scale: false
+        sortRows: false  
+        # format: '{.1,:}' warning in logs. [2024-10-05 15:26:46] multiqc.validation  [WARNING]  • unrecognized field 'format'. Available fields: id, table_title, title, height, width, square, logswitch, logswitch_active, logswitch_label, cpswitch, cpswitch_c_active, cpswitch_counts_label, cpswitch_percent_label, xLog, yLog, xlog, ylog, data_labels, xTitle, yTitle, xlab, ylab, xsuffix, ysuffix, tt_suffix, xLabFormat, yLabFormat, xLabelFormat, yLabelFormat, xlab_format, ylab_format, tt_label, xDecimals, yDecimals, decimalPlaces, x_decimals, y_decimals, tt_decimals, xmin, xmax, ymin, ymax, xFloor, xCeiling, yFloor, yCeiling, x_clipmin, x_clipmax, y_clipmin, y_clipmax, save_data_file, showlegend, namespace, save_file, raw_data_fn, defaultsort, sortRows, sort_rows, only_defined_headers, col1_header, no_beeswarm, no_violin, scale, min
+
+  varlist:
+    id: "varlist"
+    file_format: 'csv'
+    section_name: 'Variant List'
+    description: 'This is the table of variants. Low quality/coverage records are omitted.'
+    plot_type: 'table'
+    pconfig:
+        id: 'varlist'
+        scale: false
+
+  varlist2:
+    id: "varlist2"
+    # Namespace: varlist2
+    file_format: 'csv'
+    section_name: 'Variant List - Non RT Domain'
+    description: 'This is the table of variants. Low quality/coverage records are omitted.'
+    plot_type: 'table'
+    pconfig:
+        id: 'varlist2'
+        scale: false
+
+  insertions:
+    id: "insertions"
+    file_format: 'csv'
+    section_name: 'Insertion Deletion'
+    description: 'This is the table of insertions and deletions. Low quality/coverage records are omitted.'
+    plot_type: 'table'
+    pconfig:
+        id: 'insertions'
+        scale: false
+        # format: '{}'
+  
+  drug_resistance:
+    id: "drug_resistance"
+    file_format: 'csv'
+    section_name: 'Drug Resistance'
+    description: 'This is the table of drug resistance. It is compiled based on the input list.'
+    plot_type: 'table'
+    pconfig:
+        id: 'drug_resistance'
+        scale: false
+        # format: '{}'
+  
+  multichangecodons:
+    id: "multichangecodons"
+    file_format: 'csv'
+    section_name: 'Multi-Nucleotide Variants'
+    description: 'This is the table of codons with multiple base changes.'
+    plot_type: 'table'
+    pconfig:
+        id: 'multichangecodons'
+        scale: false
+        # format: '{}'
+
+  variantsbyfunction:
+    id: "variantsbyfunction"
+    file_format: 'txt'
+    section_name: 'Variant by Functional Class'
+    description: 'This is the table of Variants by Functional Class.'
+    plot_type: 'table'
+    pconfig:
+        id: 'variantsbyfunction'
+        scale: false
+        # format: '{}'
+
+  variantsquality:
+      id: "variantsquality"
+      file_format: 'txt'
+      section_name: 'Variant Qualities'
+      description: 'The plot shows the quantity as function of the variant quality score.'
+      plot_type: 'bargraph'
+      pconfig:
+          id: 'variantsquality'
+          scale: false
+          # format: '{}'
+          title: 'SnpEff: Qualities'
+          height: 256
+          stacking: None
+
+  amplicon_heatmap:
+    section_name: "Amplicon coverage heatmap"
+    description: "Heatmap to show median log10(coverage+1) per amplicon."
+    plot_type: "heatmap"
+    pconfig:
+      id: "amplicon_heatmap"
+      xTitle: "Amplicon"
+      namespace: "Heatmap to show median log10(coverage+1) per amplicon"
+      square: False
+      colstops:
+        [
+          [0, "#440154"],
+          [0.05, "#471365"],
+          [0.1, "#482475"],
+          [0.15, "#463480"],
+          [0.2, "#414487"],
+          [0.25, "#3b528b"],
+          [0.3, "#355f8d"],
+          [0.35, "#2f6c8e"],
+          [0.4, "#2a788e"],
+          [0.45, "#25848e"],
+          [0.5, "#21918c"],
+          [0.55, "#1e9c89"],
+          [0.6, "#22a884"],
+          [0.65, "#2fb47c"],
+          [0.7, "#44bf70"],
+          [0.75, "#5ec962"],
+          [0.8, "#7ad151"],
+          [0.85, "#9bd93c"],
+          [0.9, "#bddf26"],
+          [0.95, "#dfe318"],
+          [1, "#fde725"],
+        ]    
+
+  amplicon_heatmap_table:
+    section_name: "Amplicon coverage table"
+    description: "Table to show median coverage per amplicon."
+    plot_type: "table"
+    file_format: 'tsv'
+    pconfig:
+      id: "amplicon_heatmap_table"
+      scale: false
+      # format: "{:,.1f}"
+sp:
+  varlist2:
+    fn: '*_non_RT_domain_variants.csv'
+  varlist:
+    fn: '*_variants_long_table.csv'
+  insertions:
+    fn: '*_insertion_deletion_table.csv'
+  multichangecodons:
+    fn: '*_multichange_codons.csv'
+  variantsbyfunction:
+    fn: '*_snpeff_variants_functional_class.txt'
+  # variantsquality:
+  #   fn: 'snpeff_quality.txt'
+  amplicon_heatmap_table:
+    fn: '*.heatmap.tsv'
+  mosdepth/global_dist:
+    fn: '*.global.dist.txt'
+  seq_freq:
+    fn: 'sequence_freq.txt'
+  drug_resistance:
+    fn: '*_drug_resistance_mutations.csv'
+
+
+export_plots: true
+
+read_count_multiplier: 0.001
+read_count_prefix: "K"
+read_count_desc: "thousands"
+thousandsSep_format: ","
+
+table_cond_formatting_rules:
+  all_columns:
+      pass:
+        - s_eq: "No"
+      warn:
+        - s_eq: "Partial"
+      fail:
+        - s_eq: "Yes"
+  
+  "amplicon_heatmap_table":
+      pass:
+        - gt: 1000
+      warn:
+        - eq: 1000
+      fail:
+        - lt: 1000
+
+  "insertions":
+    RES:
+      pass:
+        - s_eq: "No"
+      warn:
+        - s_eq: "Partial"
+      fail:
+        - s_eq: "Yes"
+
+table_columns_visible:
+  varlist:
+    Index: False
+  insertions:
+    "Sample Name": False
+
+custom_table_header_config:
+    varlist:
+      AF:
+        format: "{:,.3f}"
+      '%Var':
+        format: "{:,.2%}"
+      '%FwdVar':
+        format: "{:,.2%}"
+      '%RevVar':
+        format: "{:,.2%}"
+      POS:
+        format: "{:.0f}"
+      'QUAL':
+        format: "{:,.1f}"
+      Coverage:
+        format: "{:,.0f}"
+
+    varlist2:
+      AF:
+        format: "{:,.3f}"
+      '%Var':
+        format: "{:,.2%}"
+      '%FwdVar':
+        format: "{:,.2%}"
+      '%RevVar':
+        format: "{:,.2%}"
+      POS:
+        format: "{:.0f}"
+      'QUAL':
+        format: "{:,.1f}"
+      Coverage:
+        format: "{:,.0f}"
+
+    insertions:
+      AF:
+        format: "{:,.3f}"
+      '%Var':
+        format: "{:,.2%}"
+      '%FwdVar':
+        format: "{:,.2%}"
+      '%RevVar':
+        format: "{:,.2%}"
+      POS:
+        format: "{:.0f}"
+      'QUAL':
+        format: "{:,.1f}"
+      Coverage:
+        format: "{:,.0f}"
+
+    seq_freq:
+      Percentage:
+        format: "{:,.2%}"
+      reads:
+        format: "{:,.0f}"
+      
+    variantsbyfunction:
+      Count:
+        format: "{:,.0f}"
+      Percent:
+        format: "{:,.0f}"
+
+    drug_resistance:
+      POS:
+        format: "{:.0f}"
+      AF:
+        format: "{:,.3f}"
+      '%Var':
+        format: "{:,.2%}"
+
+  
+custom_plot_config:
+  varlist:
+    col1_header: "Index"
+    defaultsort:
+      - column: "RES"
+  varlist2:
+    defaultsort:
+      - column: "RES"
+  insertions:
+    defaultsort:
+      - column: "RES"

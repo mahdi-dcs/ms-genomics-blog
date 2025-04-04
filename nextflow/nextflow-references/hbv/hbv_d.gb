@@ -1,0 +1,125 @@
+LOCUS       D_X02496_D_refer        3182 bp    DNA     circular VRL 24-OCT-2023
+DEFINITION  Human hepatitis B virus strain ayw variant.
+ACCESSION   X02496
+VERSION     X02496.1
+KEYWORDS    circular; genome; overlapping genes.
+SOURCE      Hepatitis B virus
+  ORGANISM  Hepatitis B virus
+            Viruses; Riboviria; Pararnavirae; Artverviricota; Revtraviricetes;
+            Blubervirales; Hepadnaviridae; Orthohepadnavirus.
+REFERENCE   1  (bases 1 to 3182)
+  AUTHORS   Bichko,V., Pushko,P., Dreilina,D., Pumpen,P. and Gren,E.
+  TITLE     Subtype ayw variant of hepatitis B virus. DNA primary structure
+            analysis
+  JOURNAL   FEBS Lett. 185 (1), 208-212 (1985)
+  PUBMED    3996597
+COMMENT     For HBV subtype ayw sequence from Galibert et al. published in
+            Nature 281.646-650(1979) see <XXHEPA>                              
+                                                                               
+            Data kindly reviewed (13-MAY-1986) by E. Gren.
+FEATURES             Location/Qualifiers
+     source          <1..3180
+                     /organism="Hepatitis B virus"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:10407"
+     CDS             130..1161
+                     /standard_name="RT domain"
+     gene            130..1161
+                     /standard_name="RT domain"
+     CDS             155..835
+                     /standard_name="SAg"
+     gene            155..835
+                     /standard_name="SAg"
+     CDS             1162..1623
+                     /standard_name="RNaseH domain"
+     gene            1162..1623
+                     /standard_name="RNase H domain"
+     CDS             1374..1838
+                     /note="unnamed protein product; X gene product (AA 1-154)"
+                     /codon_start=1
+                     /protein_id="CAA36231.1"
+                     /db_xref="GOA:P17102"
+                     /db_xref="InterPro:IPR000236"
+                     /db_xref="UniProtKB/Swiss-Prot:P17102"
+                     /standard_name="X gene"
+     gene            1374..1838
+                     /gene="X"
+     promoter        1743..1849
+                     /note="Geneious type: Promoter"
+                     /standard_name="BCP"
+     CDS             1814..1900
+                     /standard_name="precore"
+     gene            1814..1900
+                     /standard_name="precore"
+     gene            1901..2452
+                     /standard_name="core"
+     CDS             1901..2452
+                     /standard_name="core"
+     CDS             2307..129
+                     /standard_name="pol TP and spacer"
+     gene            2307..129
+                     /standard_name="pol TP and spacer"
+     CDS             2848..3171
+                     /standard_name="preS1"
+     gene            2848..3171
+                     /standard_name="PreS1"
+     CDS             3172..154
+                     /standard_name="preS2"
+     gene            3172..154
+                     /standard_name="preS2"
+ORIGIN      
+        1 ctccacaacc ttccaccaaa ctctgcaaga tcccagagtg agaggcctgt atttccctgc
+       61 tggtggctcc agttcaggaa cagtaaaccc tgttccgact actgtctctc ccatatcgtc
+      121 aatcttctcg aggattgggg accctgcgct gaacatggag aacatcacat caggattcct
+      181 aggacccctg ctcgtgttac aggcggggtt tttcttgttg acaagaatcc tcacaatacc
+      241 gcagagtcta gactcgtggt ggacttctct caattttcta gggggaacta ccgtgtgtct
+      301 tggccaaaat tcgcagtccc caacctccaa tcactcacca acctcctgtc ctccaacttg
+      361 tcctggttat cgctggatgt gtctgcggcg ttttatcatc ttcctcttca tcctgctgct
+      421 atgcctcatc ttcttgttgg ttcttctgga ctatcaaggt atgttgcccg tttgtcctct
+      481 aattccagga tcttcaacta ccagcacggg accatgcaga acctgcacga ctcctgctca
+      541 aggaacctct atgtatccct cctgttgctg taccaaacct tcggacggaa attgcacctg
+      601 tattcccatc ccatcatcct gggctttcgg aaaattccta tgggagtggg cctcagcccg
+      661 tttctcctgg ctcagtttac tagtgccatt tgttcagtgg ttcgtagggc tttcccccac
+      721 tgtttggctt tcagttatat ggatgatgtg gtattggggg ccaagtctgt acagcatctt
+      781 gagtcccttt ttaccgctgt taccaatttt cttctgtctt tgggtataca tttaaaccct
+      841 aacaaaacaa aaagatgggg ttactcttta catttcatgg gctatgtcat tggatgttat
+      901 gggtcattgc cacaagatca catcatacag aaaatcaaag aatgctttag aaaacttcct
+      961 gttaacaggc ctattgattg gaaagtctgt caacgtattg tgggtctttt gggttttgct
+     1021 gcccctttta cacaatgtgg ttatcctgct ttaatgcctt tgtatgcatg tattcagtcg
+     1081 aagcaggctt ttactttctc gccaacttac aaggcctttc tgtgtaaaca atacctgaac
+     1141 ctttaccccg ttgcccggca acggccaggt ctgtgccaag tgtttgctga cgcaaccccc
+     1201 actggctggg gcttggtcat gggccatcag cgcatgcgtg gaacctttct ggctcgtctg
+     1261 ccgatccata ctgcggaact cctagccgct tgttttgctc gcagcaggtc tggagcaaac
+     1321 attctcggga cggataactc tgttgttctc tcccgcaaat atacatcgta tccatggctg
+     1381 ctaggctgtg ctgccaactg gatcctgcgc gggacgtcct ttgtttacgt cccgtcggcg
+     1441 ctgaatcccg cggacgaccc ttctcggggt cgcttgggac tctctcgtcc ccttctccgt
+     1501 ctgccgtttc gaccgaccac ggggcgcacc tctctttacg cggactcccc gtctgtgcct
+     1561 tctcatctgc cggaccgtgt gcacttcgct tcacctctgc acgtcgcatg gagaccaccg
+     1621 tgaaagccca accattcttg cccaaggtct tacataagag gactcttgga ctctctgtaa
+     1681 tgtcaacgac cgaccttgag gcatacttca aagactgttt gtttaaagac tgggaggagt
+     1741 tgggggagga gattaggtta aaggtctttg tattaggagg ctgtaggcat aaattggtct
+     1801 gcgcaccagc accatgcaac tttttcacct ctgcctaatc atctcttgtt catgtcctac
+     1861 tgttcaagcc tccaagctgt gccttgggtg gctttggggc atggacattg atccttataa
+     1921 agaatttgga gctactgtgg agttactctc gtttttgcct tctgacttct ttccttcagt
+     1981 acgagatctt ctagataacg cctcagctct gtatcgggaa gccttagagt ctcctgagca
+     2041 ttgttcacct caccatactg cactcaggca agcaatactg tgctgggggg aactaatgac
+     2101 tctagctacc tgggtgggtg gtaatttgga agatccaata tccagggacc tagtagtcag
+     2161 ttatgtcaac actaatatgg gcctaaaatt caggcaacta ttgtggtttc acatttcttg
+     2221 tctcactttt ggaagagaaa cagttataga gtatttggtg tcttttggag tgtggattcg
+     2281 cactcctcca gcttatagac caccaaatgc ccctatctta tcaacacttc cggagactac
+     2341 tgttgttaga cgacgaggca ggtcccctag aagaagaact ccctcgcctc gcagacgaag
+     2401 gtctcaatcg ccgcgtcgca gaagatctca atctcgggaa tctcaatgtt agtattcctt
+     2461 ggactcataa ggtgggaaac tttacggggc tttattcttc tactgtacct gtctttaacc
+     2521 ctcattggaa aacaccctct tttcctaata tacatttaca ccaagacatt atcaaaaaat
+     2581 gtgaacaatt tgtaggccca ctcacagtca atgagaaaag aagactgcaa ttgattatgc
+     2641 cagctaggtt ttatccaaat gttaccaaat atttgccatt ggataagggt attaaacctt
+     2701 attatccaga atatttagtt aatcattact tccaaactag acattattta cacactctat
+     2761 ggaaggcggg tatattatac aagagagaaa ctacacatag cgcctcattt tgtgggtcac
+     2821 catattcttg ggaacaagag ctacagcatg gggcagaatc tttccaccag caatcctctg
+     2881 ggattctttc ccgaccacca gttggatcca gccttcagag caaacaccgc aaatccagat
+     2941 tgggacttca atcccaacaa ggacacctgg ccagacgcca acaaggtagg agctggagca
+     3001 ttcgggctgg gattcacccc accacacgga ggccttttgg ggtggagccc tcaggctcag
+     3061 ggcatactag aaacgttgcc agcaaatccg cctcctgcct ctaccaatcg ccagtcagga
+     3121 aggcagccta ccccgctgtc tccacctttg agaaacactc atcctcaggc catgcagtgg
+     3181 aa
+//

@@ -178,104 +178,17 @@ resource acrPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01' = {
   }
 }
 
-
-//************************** Batch User Managed Identity Role Assignments
-
-// resource managedIdentityRoleAssignmentACR 'Microsoft.Authorization/roleAssignments@2022-04-01' = if(targetEnv == 'prd') {
-//   name: guid(resourceGroup().id, acrResource.id)
-//   scope: acrResource
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     AppsUserManagedIdeitityRoles.AcrPullRole.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     acrPrivateEndpoint
-//   ]
-// }
+// Role assignments for Batch User Managed Identity
+module acrRoleAssignment 'modules/roles/main.bicep' = {
+  name: '${deploymentName}-acr-role'
+  params: {
+    acrName: acrResource.name
+    storageAccountName: storageAccountName
+    batchStorageAccountName: batchStorageAccountName
+    keyVaultName: kvName
+    principalId: batchUserManagedIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
 
 
-// resource managedIdentityRoleAssignmentKeyVault 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(resourceGroup().id, keyVault.id)
-//   scope: keyVault
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     AppsUserManagedIdeitityRoles.KeyVaultSecretUser.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     keyVault
-//   ]
-// }
-
-// resource managedIdentityRoleAssignmentBatchStorageAccount 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(resourceGroup().id, batchStorageAccount.id, batchStorageAccount.id)
-//   scope: batchStorageAccount
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     AppsUserManagedIdeitityRoles.StorageBlobDataContributorRole.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     batchStorageAccount
-//   ]
-// }
-
-// resource managedIdentityRoleAssignmentBatchStorageAccountContributor 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(resourceGroup().id, batchStorageAccount.id)
-//   scope: batchStorageAccount
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     generalRoleDefinitioin.ContributorRole.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     batchStorageAccount
-//   ]
-// }
-
-// resource managedIdentityRoleAssignmentStorageAccountBlobContributor 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(resourceGroup().id, storageAccount.id, generalRoleDefinitioin.StorageBlobDataContributorRole.id)
-//   scope: storageAccount
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     generalRoleDefinitioin.StorageBlobDataContributorRole.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     storageAccount
-//   ]
-// }
-
-// resource managedIdentityRoleAssignmentStorageAccountContributor 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(resourceGroup().id, storageAccount.id)
-//   scope: storageAccount
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     generalRoleDefinitioin.ContributorRole.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     storageAccount
-//   ]
-// }
-
-// resource managedIdentityRoleAssignmentStorageAccountReader 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(resourceGroup().id, storageAccount.id, generalRoleDefinitioin.StorageBlobDataReaderRole.id)
-//   scope: storageAccount
-//   properties: {
-//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions',
-//     generalRoleDefinitioin.StorageBlobDataReaderRole.id)
-//     principalId: batchUserManagedIdentity.properties.principalId
-//     principalType: 'ServicePrincipal'
-//   }
-//   dependsOn: [
-//     storageAccount
-//   ]
-// }

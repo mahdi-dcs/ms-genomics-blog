@@ -1,0 +1,134 @@
+LOCUS       F_X75663_F_refer        3215 bp    DNA     circular VRL 24-OCT-2023
+DEFINITION  Human hepatitis virus (genotype F, 9203) preS1, preS2, S, C, X, and
+            P genes for surface antigens, core antigen, X protein and
+            polymerase.
+ACCESSION   X75663
+VERSION     X75663.1
+KEYWORDS    c gene; core antigen; p gene; polymerase; pre-S1 region; pre-S2;
+            region; S gene; surface antigen; x gene; X protein.
+SOURCE      Hepatitis B virus
+  ORGANISM  Hepatitis B virus
+            Viruses; Riboviria; Pararnavirae; Artverviricota; Revtraviricetes;
+            Blubervirales; Hepadnaviridae; Orthohepadnavirus.
+REFERENCE   1
+  AUTHORS   Norder,H., Courouce,A.M. and Magnius,L.O.
+  TITLE     Complete genomes, phylogenetic relatedness, and structural proteins
+            of six strains of the hepatitis B virus, four of which represent
+            two new genotypes
+  JOURNAL   Virology 198 (2), 489-503 (1994)
+  PUBMED    8291231
+REFERENCE   2  (bases 1 to 3215)
+  AUTHORS   Norder,H.M.L.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (04-NOV-1993) H.M.L. Norder, Swedish Institute for
+            Infectious Disease, Control, 105 21 Stockholm, SWEDEN
+FEATURES             Location/Qualifiers
+     source          1..3215
+                     /organism="Hepatitis B virus"
+                     /mol_type="genomic DNA"
+                     /strain="genotype F"
+                     /sub_strain="adw4q-"
+                     /isolate=9203
+                     /db_xref="taxon:10407"
+                     /map="1-3215 nucleotides"
+     CDS             130..1161
+                     /standard_name="RT domain"
+     gene            130..1161
+                     /standard_name="RT domain"
+     CDS             155..835
+                     /standard_name="SAg"
+     gene            155..835
+                     /standard_name="SAg"
+     CDS             1162..1623
+                     /standard_name="RNaseH domain"
+     gene            1162..1623
+                     /standard_name="RNase H domain"
+     CDS             1374..1838
+                     /note="unnamed protein product; X gene product (AA 1-154)"
+                     /codon_start=1
+                     /protein_id="CAA36231.1"
+                     /db_xref="GOA:P17102"
+                     /db_xref="InterPro:IPR000236"
+                     /db_xref="UniProtKB/Swiss-Prot:P17102"
+                     /standard_name="X gene"
+     gene            1374..1838
+                     /gene="X"
+     promoter        1743..1849
+                     /note="Geneious type: Promoter"
+                     /standard_name="BCP"
+     CDS             1814..1900
+                     /standard_name="precore"
+     gene            1814..1900
+                     /standard_name="precore"
+     gene            1901..2452
+                     /standard_name="core"
+     CDS             1901..2452
+                     /standard_name="core"
+     CDS             2307..129
+                     /standard_name="pol TP and spacer"
+     gene            2307..129
+                     /standard_name="pol TP and spacer"
+     CDS             2848..3204
+                     /standard_name="preS1"
+     gene            2848..3204
+                     /standard_name="PreS1"
+     CDS             3205..154
+                     /standard_name="preS2"
+     gene            3205..154
+                     /standard_name="preS2"
+ORIGIN      
+        1 ctcaactcac ttccaccaag ctctgttgga tcccagggta agggcactgt attttcctgc
+       61 tggtggctcc agttcaggaa cacagaaccc tgctccgact attgcctctc tcacatcatc
+      121 aatctcctcg aagactgggg gccctgctat gaacatggag aacatcacat caggactcct
+      181 aggacccctg cgcgtgttac aggcggtgtg tttcttgttg acaaaaatcc tcacaatacc
+      241 acagagtcta gactcgtggt ggacttctct caattttcta gggggactac ccaggtgtcc
+      301 tggccaaaat tcgcagtccc caacctccaa tcacttacca acctcctgtc ctccaacttg
+      361 tcctggctat cgttggatgt gtctgcggcg ttttatcatc ttcctcttca tcctgctgct
+      421 atgcctcatc ttcttgttgg ttcttctgga ctaccaaggt atgttgcccg tttgtcctct
+      481 acttccagga tccacgacca ccagcacggg accatgcaaa acctgcacag ctcttgctca
+      541 aggaacctct atgtttccct cctgttgctg ttccaaaccc tcggacggaa actgcacctg
+      601 tattcccatc ccatcatctt gggctttagg aaaataccta tgggagtggg cctcagcccg
+      661 tttctcctgg ctcagtttac tagtgcaatt tgttcagtgg tgcgtagggc tttcccccac
+      721 tgtctggctt ttagttatat ggatgatctg gtattggggg ccaaatctgt gcagcatctt
+      781 gagtcccttt ataccgctgt taccaatttt ctgttatctg tgggtatcca tttaaatact
+      841 gctaaaacaa aaagatgggg ttacaaccta catttcatgg gttatgttat tggtagttgg
+      901 ggaacgttac cccaagatca tattgtacac aaaatcaaag attgttttcg aaaagttcct
+      961 gtaaatcgcc caattgattg gaaagtttgt caaagtattg tgggtctttt gggctttgcg
+     1021 gcccctttta cccaatgtgg ttatcctgct ctcatgcctt tgtatgcctg tattactgct
+     1081 aaacaggctt ttgtcttctc gccaacttac aaggcctttc tgtgtaaaca atacatgaac
+     1141 ctttaccccg ttgctcggca acggccaggc ctgtgccaag tgtttgctga cgcaaccccc
+     1201 actggctggg gcttggccat aggccatcag cgcatgcgtg gaacctttgt ggctcctctg
+     1261 ccgatccata ctgcggaact ccttgcagct tgcttcgctc gcagccggtc tggagcaatc
+     1321 ctcatcggca cagacaattc tgtcgtcctc tctcggaagt atacatcctt tccatggctg
+     1381 ctcggttgtg ctgccaactg gatcctgcgc gggacgtcct ttgtttacgt cccgtcggcg
+     1441 ctgaatccag cggacgaacc ctcccggggt cgcttggggc tgtaccgccc ccttcttcgt
+     1501 ctgccgttcc agccgacaac gggtcgcacc tctctttacg cggactcccc gtctgttcct
+     1561 tctcatctgc cggaccgtgt gcacttcgct tcacctctgc acgtcgcatg gagaccaccg
+     1621 tgaacgcccc ctggagtttg ccaacagtct tacataagag gactcttgga ctttcaggac
+     1681 ggtcaatgac ctggatcgaa gactacatca aagactgtgt atttaaggac tgggaggagc
+     1741 tgggggagga gatcaggtta aaggtctttg tactaggagg ctgtaggcat aaattggtct
+     1801 gttcaccagc accatgcaac tttttcacct ctgcctaatc atctcttgtt catgtcccac
+     1861 tgttcaagcc tccaagctgt gccttgggtg gctttggggc atggacattg acccttataa
+     1921 agaatttgga gcttctgtgg aattgttctc ttttttggct tctgacttct ttccgtctgt
+     1981 tcgggacctc ctcgacaccg cctcagccct gtaccgggat gccttagagt caccggaaca
+     2041 ttgcaccccc aatcataccg ctctcaggca agctattttg tgctggggtg agttaatgac
+     2101 tttggcttcc tgggtgggta ataatttgga agaccctgca gctagggatt tagtagttaa
+     2161 ttatgtcaac actaatatgg gcttaaagat tagacaacta ttgtggtttc acatctcctg
+     2221 tcttactttt ggaagagaaa cagttcttga gtatttggtg tcctttggag tgtggattcg
+     2281 cactccacct gcttatagac caccaaatgc ccctatccta tccacacttc cggaaactac
+     2341 tgttgttaga cgacgaggca ggtcccctag aagaagaact ccctcgcctc gccgacgaag
+     2401 gtctcaatcg ccgcgtcgca gaagatctca atctccagct tcccaatgtt agtattcctt
+     2461 ggactcataa ggtgggaaat tttacggggc tctactcttc tactgtacct gctttcaatc
+     2521 ctaactggtt aactccttct tttcctgata ttcatttaca tcaggatatg atatctaaat
+     2581 gtgaacaatt tgtaggcccg ctcactaaaa atgaattgag aagattaaaa ttggtcatgc
+     2641 cagctagatt ttatcctaag cataccaaat atttcctatt ggagaaaggg attaaaccct
+     2701 attatccaga tcaggcagtt aatcattatt ttcaaaccag acattatttg catactttat
+     2761 ggaaggcggg aattctatat aagagagaaa ccacacgtag cgcctcattt tgtgggtcac
+     2821 aatattcctg ggaacaagag ctacagcatg ggagcacctc tctcaacgac aagaaggggc
+     2881 atgggacaga atctttctgt gcccaatcca ctgggcttct tgccagacca tcagctggat
+     2941 ccgctattca gagcaaattc cagcagtccc gactgggact tcaacacaaa caaggacagt
+     3001 tggccaatgg caaacaaggt aggagtggga ggctacggtc cagggttcac acccccacac
+     3061 ggtggcctgc tggggtggag ccctcaggca cagggtgttt taacaacctt gccagcagat
+     3121 ccgcctcctg cttccaccaa tcggctgtcc gggaggaagc caacccaagt ctctccacct
+     3181 ctaagagaca cacatcctca ggccatgcag tggaa
+//

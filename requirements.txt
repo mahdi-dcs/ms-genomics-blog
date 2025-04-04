@@ -1,0 +1,5 @@
+azure-identity
+azure-keyvault-secrets
+pandas
+uuid
+datetime

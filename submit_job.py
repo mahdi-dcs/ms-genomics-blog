@@ -1,27 +1,131 @@
 import os
 import time
-from azure.identity import ManagedIdentityCredential
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 from azure.batch import BatchServiceClient
-from azure.batch.models import PoolInformation, TaskAddParameter, JobAddParameter
+from azure.batch.models import (
+    PoolInformation, 
+    TaskAddParameter, 
+    JobAddParameter,
+    ResourceFile,
+    TaskContainerSettings,
+    UserIdentity,
+    AutoUserSpecification,
+    EnvironmentSetting,
+    OnAllTasksComplete
+)
 import uuid
+from azure.core.credentials import TokenCredential
+import requests
+
+class BatchTokenCredential(TokenCredential):
+    def __init__(self, account_url, token):
+        self.account_url = account_url
+        self.token = token
+
+    def get_token(self, *scopes, **kwargs):
+        return self.token
+
+    def signed_session(self, session=None):
+        if session is None:
+            session = requests.Session()
+        session.headers.update({
+            'Authorization': f'Bearer {self.token}'
+        })
+        return session
 
 # Variables (update these as needed)
 RESOURCE_GROUP = os.environ.get('RESOURCE_GROUP')
 BATCH_ACCOUNT_URL = os.environ.get('BATCH_ACCOUNT_URL')
+BATCH_ACCOUNT_NAME = os.environ.get('BATCH_ACCOUNT_NAME')
 POOL_ID = os.environ.get('POOL_ID')
-BATCH_JOB_ID = str(uuid.uuid4())
-
 STORAGE_ACCOUNT = os.environ.get('STORAGE_ACCOUNT')
+AUTOSTORAGE_ACCOUNT = os.environ.get('AUTOSTORAGE_ACCOUNT')
+KEYVAULT_NAME = os.environ.get('KEYVAULT_NAME')
 CONTAINER_NAME = "nextflow"
-
 LOCAL_FOLDER_PATH = os.environ.get('LOCAL_FOLDER_PATH')
 
-# Authenticate using the managed identity
-print("Authenticating using the managed identity...")
-# credential = ManagedIdentityCredential()
+def submit_job_to_batch(run_name, output_path, pipeline_run_id):
+    print(f"Submitting job to Batch for run {run_name}")
+    
+    # Create a unique job ID
+    job_id = f"{run_name}-{str(uuid.uuid4())}"
+    job_id = job_id[:60] if len(job_id) > 60 else job_id
+    
+    # Create the job
+    job = JobAddParameter(
+        id=job_id,
+        display_name=run_name,
+        pool_info=PoolInformation(pool_id=POOL_ID),
+        on_all_tasks_complete=OnAllTasksComplete.terminate_job
+    )
+    
+    # Add the job to Batch
+    batch_client.job.add(job)
+    print(f"Created job {job_id}")
+    
+    print(f"Loading files from autostorage to Batch for run {run_name}")
+    
+    # Create resource file for nextflow config
+    nf_config_file = ResourceFile(
+        auto_storage_container_name="nextflow",
+        blob_prefix="nextflow-pipeline-source"
+    )
+    
+    # Create the task
+    nextflow_command = "/bin/bash -c 'python3 run_nextflow.py'"
+    
+    # Set up container settings
+    container_settings = TaskContainerSettings(
+        image_name="genomicsacrdev01.azurecr.io/batch-nf:1.0",
+        registry="genomicsacrdev01.azurecr.io"        
+    )
+    
+    # Set up user identity
+    user_identity = UserIdentity(
+        auto_user=AutoUserSpecification(
+            elevation_level="admin",
+            scope="pool"
+        )
+    )
+    
+    # Set up environment settings
+    environment_settings = [
+        EnvironmentSetting(name="OUTPUT_PATH", value=output_path),
+        EnvironmentSetting(name="RUN_NAME", value=run_name),
+        EnvironmentSetting(name="PIPELINE_RUN_ID", value=pipeline_run_id),
+        EnvironmentSetting(name="STORAGE_ACCOUNT_NAME", value=STORAGE_ACCOUNT),
+        EnvironmentSetting(name="AUTOSTORAGE_ACCOUNT_NAME", value=AUTOSTORAGE_ACCOUNT),
+        EnvironmentSetting(name="KEYVAULT_NAME", value=KEYVAULT_NAME),
+        EnvironmentSetting(name="BATCH_ACCOUNT_NAME", value=BATCH_ACCOUNT_NAME),
+        EnvironmentSetting(name="AZURE_STORAGE_ACCOUNT_NAME", value=STORAGE_ACCOUNT),
+        EnvironmentSetting(name="AZURE_BATCH_ACCOUNT_NAME", value=BATCH_ACCOUNT_NAME),
+    ]
+    
+    # Create the task
+    task = TaskAddParameter(
+        id=run_name,
+        command_line=nextflow_command,
+        container_settings=container_settings,
+        user_identity=user_identity,
+        environment_settings=environment_settings,
+        resource_files=[nf_config_file]
+    )
+    
+    print(f"Adding task to job {job_id}")
+    batch_client.task.add(job_id=job_id, task=task)
+    
+    return job_id, task.id
+
+# Authenticate using DefaultAzureCredential
+print("Authenticating...")
 credential = DefaultAzureCredential()
+
+# Get token for Azure Batch
+print("Getting token for Azure Batch...")
+batch_token = credential.get_token("https://batch.core.windows.net/")
+batch_credential = BatchTokenCredential(BATCH_ACCOUNT_URL, batch_token.token)
+
 # Upload folder to Azure Blob Storage
 print("Uploading folder to Azure Blob Storage...")
 blob_service_client = BlobServiceClient(
@@ -35,44 +139,25 @@ if not container_client.exists():
     container_client.create_container()
 
 # Upload files in the folder
-for root, _, files in os.walk(LOCAL_FOLDER_PATH):
-    for file in files:
-        file_path = os.path.join(root, file)
-        blob_name = os.path.relpath(file_path, LOCAL_FOLDER_PATH)
-        print(f"Uploading {file_path} as {blob_name}...")
-        with open(file_path, "rb") as data:
-            container_client.upload_blob(name=blob_name, data=data, overwrite=True)
+# for root, _, files in os.walk(LOCAL_FOLDER_PATH):
+#     for file in files:
+#         file_path = os.path.join(root, file)
+#         blob_name = os.path.relpath(file_path, LOCAL_FOLDER_PATH)
+#         print(f"Uploading {file_path} as {blob_name}...")
+#         with open(file_path, "rb") as data:
+#             container_client.upload_blob(name=blob_name, data=data, overwrite=True)
 
 print(f"Folder uploaded successfully to container '{CONTAINER_NAME}'.")
 
 # Create a Batch job if it doesn't exist
 print("Connecting to Azure Batch...")
-batch_client = BatchServiceClient(credential, batch_url=BATCH_ACCOUNT_URL)
+batch_client = BatchServiceClient(batch_credential, batch_url=BATCH_ACCOUNT_URL)
 
-print(f"Checking if Batch job '{BATCH_JOB_ID}' exists...")
-try:
-    batch_client.job.get(BATCH_JOB_ID)
-    print(f"Batch job '{BATCH_JOB_ID}' already exists.")
-except:
-    print(f"Creating Batch job '{BATCH_JOB_ID}'...")
-    job = JobAddParameter(
-        id=BATCH_JOB_ID,
-        pool_info=PoolInformation(pool_id=POOL_ID)
-    )
-    batch_client.job.add(job)
-    print(f"Batch job '{BATCH_JOB_ID}' created successfully.")
-
-# Submit a task to the Batch job
-print(f"Submitting task to Batch job '{BATCH_JOB_ID}'...")
-task_id = f"task-{int(time.time())}"  # Unique task ID based on timestamp
-task = TaskAddParameter(
-    id=task_id,
-    command_line="/bin/bash -c 'echo Hello, Azure Batch! && ls'",
-    # application_package_references=[
-    #     {"application_id": AZURE_BATCH_APP_PACKAGE.split("#")[0], "version": AZURE_BATCH_APP_PACKAGE.split("#")[1]}
-    # ]
+# Example usage of submit_job_to_batch
+job_id, task_id = submit_job_to_batch(
+    run_name="test-run",
+    output_path="/path/to/output",
+    pipeline_run_id=str(uuid.uuid4())
 )
-batch_client.task.add(job_id=BATCH_JOB_ID, task=task)
-print(f"Task '{task_id}' submitted successfully to job '{BATCH_JOB_ID}'.")
 
-print("Script execution completed successfully.")
+print(f"Job submitted successfully. Job ID: {job_id}, Task ID: {task_id}")

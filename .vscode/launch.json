@@ -13,9 +13,9 @@
             "console": "integratedTerminal",
             "env": {
                 "RESOURCE_GROUP": "blog-genomics",
-                "POOL_ID": "your_pool_id",
-                "BATCH_ACCOUNT_URL": "https://your_batch_account_url",
-                "STORAGE_ACCOUNT": "your_storage_account_name",
+                "POOL_ID": "nf-runner-pool-STANDARD_DC1s_V2-dev",
+                "BATCH_ACCOUNT_URL": "https://devbatchgenomics01.canadacentral.batch.azure.com",
+                "STORAGE_ACCOUNT": "devbsagenomics01",
 
                 "LOCAL_FOLDER_PATH": "${workspaceFolder}/nextflow",
             }

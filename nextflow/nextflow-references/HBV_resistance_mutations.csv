@@ -1,0 +1,80 @@
+Gene,mutation,Lamivudine,Adefovir,Entecavir,Tenofovir,Reference
+RT_domain,L80I,R,,,,DOI: 10.1111/jvh.1352S
+RT_domain,L80V,R,,,,DOI: 10.1111/jvh.1352S
+RT_domain,1169T,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,V173L,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,L180M,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,L180C,R,,R,,DOI: 10.1111/jvh.1352S
+RT_domain,A181T,R,R,,,EASL J.Hepatology2017 vol67
+RT_domain,A181V,R,R,,,EASL J.Hepatology2017 vol67
+RT_domain,T184A,,,R,,DOI: 10.1111/jvh.1352S
+RT_domain,T184G,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,T184I,,,R,,DOI: 10.1111/jvh.1352S
+RT_domain,T184S,,,R,,DOI: 10.1111/jvh.1352S
+RT_domain,T184L,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,A194T,,,,R,DOI: 10.1111/jvh.1352S
+RT_domain,S202G,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,S202I,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,M204I,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,M204V,R,,R,,EASL J.Hepatology2017 vol67
+RT_domain,N236T,,R,,,EASL J.Hepatology2017 vol67
+RT_domain,A186T,,,R,,DOI: 10.1111/jvh.1352S
+RT_domain,C256G,,,R,,DOI: 10.1111/jvh.1352S
+RT_domain,M250V,,,R,,EASL J.Hepatology2017 vol67
+RT_domain,S106C,,,,R,DOI: 10.1111/jvh.1352S
+RT_domain,D134E,,,,R,doi: 10.1016/j.jhep.2019.02.006
+RT_domain,L269I,,,,R,doi: 10.1016/j.jhep.2019.02.006
+RT_domain,A317S,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,S78T,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,R153W,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,R153Q,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,V191I,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,P177G,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,V207L,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,F249A,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,A200V,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,I63V,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,L91I,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,R192P,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,P130S,,,,R,DOI: 10.1111/jvh.1352S
+RT_domain,Q130S,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,K333Q,,,,R,DOI: 10.1111/jvh.1352S
+RT_domain,N337H,,,,R,DOI: 10.1111/jvh.1352S
+RT_domain,C256S,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,Y9H,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,S106G,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,T118C,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,T118G,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,F122L,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,H126Y,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,L217R,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,F221Y,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,S223A,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,L229V,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,L229W,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,D263E,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,Q267L,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,I269L,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,V278I,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+RT_domain,V278V,,,,R,doi.org/10.12688/wellcomeopenres.15992.1
+BCP,a1762t,,,,,
+BCP,g1764a,,,,,
+BCP,t1753c,,,,,
+BCP,t1753a,,,,,
+BCP,t1753g,,,,,
+BCP,c1766t,,,,,
+BCP,t1768a,,,,,
+BCP,g1896a,,,,,
+BCP,g1899a,,,,,
+BCP,g1862t,,,,,
+precore,M1L,,,,,
+precore,M1T,,,,,
+precore,M1I,,,,,
+precore,Q2*,,,,,
+precore,P15S,,,,,
+precore,V17F,,,,,
+precore,W26R,,,,,
+precore,W28*,,,,,
+SAg,G145R,,,,,
+SAg,G145A,,,,,
+SAg,G145K,,,,,
