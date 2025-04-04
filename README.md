@@ -61,16 +61,36 @@ For a complete deployment of Secured Batch see for example: [Batch Accelerator](
   docker push $IMAGE_TAG
   ```
 
-- use [submit_job.py](submit_job.py) script to upload nextflow pipeline codes, and define and submit a batch job to run the pipeline.
-  - Blob Data Contributor/Owner role is required to run this script.
-
-## Git Action
+### Git Action
 
 A git action is setup using the [deploy-infrastructure.yaml](.github/workflows/deploy-infrastructure.yaml).
 
 - To use this Git Action, a self-hosted runner within the network (on Azure or on-premesis) is required.
 - Set up the credentials in Github secrets following the [documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-github-actions?tabs=CLI%2Copenid#generate-deployment-credentials).
 - The deployment pipeline can be triggered by a push commit or manually from the Github website.
+
+## Run Nextflow Pipeline
+
+A sample Nextflow pipeline is included under the [nextflow](nextflow/) folder. To run this pipeline:
+
+1. Upload [samples](samples) and [references](nextflow-references) folders to the I/O Storage Account under `nextflow` blob container.
+2. Set the following environment variables:
+
+  | Variable | Description |
+  |----------|-------------|
+  | `RESOURCE_GROUP` | The name of the Azure resource group where resources are deployed |
+  | `BATCH_ACCOUNT_URL` | The URL endpoint of the Azure Batch account |
+  | `BATCH_ACCOUNT_NAME` | The name of the Azure Batch account |
+  | `POOL_ID` | The ID of the Batch Nextflow Healdnodes pool |
+  | `STORAGE_ACCOUNT_NAME` | The name of the storage account used for pipeline I/O |
+  | `AUTOSTORAGE_ACCOUNT_NAME` | The name of the storage account used for pipeline assets |
+  | `KEYVAULT_NAME` | The name of the Key Vault storing secrets and certificates |
+  | `CONTAINER_NAME` | The name of the container registry where the Nextflow image and other images used in pipeline tasks are stored |
+  | `LOCAL_FOLDER_PATH` | The local path where Nextflow Pipeline files are located |
+  | `MANAGED_IDENTITY_RESOURCE_ID` | The resource ID of the User Managed Identity used by Batch Account and Pool Nodes to access Storage and Key Vault. Must be in the format: `/subscriptions/<subscription id>/resourcegroups/<resource group name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user managed identity name>` |
+  | `OUTPUT_PATH` | The path in the I/O Storage Account where pipeline outputs of the run will be stored |
+
+3. use [submit_job.py](submit_job.py) script to upload nextflow pipeline codes, and define and submit a batch job to run the pipeline. Blob Data Contributor/Owner role is required to run this script.
 
 ## Improvement Opportunities
 
