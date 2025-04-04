@@ -1,10 +1,10 @@
 process variants_long_table {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
 
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/annotation/", mode: 'copy'
     // container 'quay.io/biocontainers/mulled-v2-77320db00eefbbf8c599692102c3d387a37ef02a:08144a66f00dc7684fad061f1466033c0176e7ad-0' 
-    container 'phcccgenacrprd.azurecr.io/biocontainers-mulled-v2-77320db00eefbbf8c599692102c3d387a37ef02a:08144a66f00dc7684fad061f1466033c0176e7ad-0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-mulled-v2-77320db00eefbbf8c599692102c3d387a37ef02a:08144a66f00dc7684fad061f1466033c0176e7ad-0'
 
   
     input:

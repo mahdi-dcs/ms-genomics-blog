@@ -1,8 +1,8 @@
 process blast {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/blast:2.13.0--hf3cf87c_0'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-blast:2.13.0--hf3cf87c_0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-blast:2.13.0--hf3cf87c_0'
     publishDir "${params.outdir}/$sample_id/blast/", mode: 'copy'                              
 
     input:

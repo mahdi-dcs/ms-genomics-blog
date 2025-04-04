@@ -1,9 +1,9 @@
 process call_deletions_hbv {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/variants/", mode: 'copy'
     // container 'quay.io/biocontainers/medaka:1.4.4--py38h130def0_0'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-medaka:1.4.4--py38h130def0_0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-medaka:1.4.4--py38h130def0_0'
 
     input:
         tuple val(sample_id), path("${sample_id}.fastq"), path("genome.txt")

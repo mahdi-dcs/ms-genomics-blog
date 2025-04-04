@@ -1,8 +1,8 @@
 process bam_generation {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/samtools:1.17--h00cdaf9_0'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-samtools:1.17--h00cdaf9_0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-samtools:1.17--h00cdaf9_0'
     publishDir "${params.outdir}/$sample_id/align/", mode: 'copy'
 
 

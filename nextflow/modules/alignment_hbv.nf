@@ -1,9 +1,9 @@
 process alignment_hbv {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
 
     tag "$sample_id"
     // container 'quay.io/biocontainers/minimap2:2.17--hed695b0_3'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-minimap2:2.17--hed695b0_3'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-minimap2:2.17--hed695b0_3'
     publishDir "${params.outdir}/$sample_id/align/", mode: 'copy'
 
     input:

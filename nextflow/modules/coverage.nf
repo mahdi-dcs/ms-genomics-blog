@@ -1,8 +1,8 @@
 process coverage {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/mosdepth:0.3.3--hdfd78af_1'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-mosdepth:0.3.3--hdfd78af_1'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-mosdepth:0.3.3--hdfd78af_1'
     publishDir "${params.outdir}/$sample_id/coverage/", mode: 'copy'
 
 

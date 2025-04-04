@@ -1,9 +1,9 @@
 process annotation_extractfields {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/annotation/", mode: 'copy'
     // container 'quay.io/biocontainers/snpsift:4.3.1t--hdfd78af_3'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-snpsift:4.3.1t--hdfd78af_3'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-snpsift:4.3.1t--hdfd78af_3'
 
     input:
     tuple val(sample_id), path(vcf)

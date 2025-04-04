@@ -1,9 +1,9 @@
 process vcf_uniq {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/variants/", mode: 'copy'
     // container 'quay.io/biocontainers/vcflib:1.0.3--hecb563c_1'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-vcflib:1.0.3--hecb563c_1'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-vcflib:1.0.3--hecb563c_1'
 
     input:
     tuple val(sample_id), path(vcf), path ('genotype.txt')

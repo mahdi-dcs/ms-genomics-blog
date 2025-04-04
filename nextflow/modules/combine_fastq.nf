@@ -1,8 +1,8 @@
 process combine_fastq {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'ontresearch/wf-artic:shaa5485f2d1c9085c23b266273556a4ce01e5e0dd9'
-    container 'phcccgenacrprd.azurecr.io/ontresearch-wf-artic:20241129pull'
+    container 'genomicsacrdev01.azurecr.io/ontresearch-wf-artic:20241129pull'
     publishDir "${params.outdir}/$sample_id/combinedFastq/", mode: 'copy'
 
     input:

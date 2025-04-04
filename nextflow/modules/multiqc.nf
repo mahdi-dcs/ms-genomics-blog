@@ -1,8 +1,8 @@
 process multiqc {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/multiqc:1.25--pyhdfd78af_0'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-multiqc:1.25--pyhdfd78af_0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-multiqc:1.25--pyhdfd78af_0'
     publishDir "${params.outdir}/$sample_id/report/", mode: 'copy'                              
 
 

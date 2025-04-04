@@ -1,9 +1,9 @@
 process fastp {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     
     tag "$sample_id"
     // container 'quay.io/biocontainers/fastp:0.23.2--h79da9fb_0'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-fastp:0.23.2--h79da9fb_0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-fastp:0.23.2--h79da9fb_0'
     publishDir "${params.outdir}/${sample_id}/fastp/", mode: 'copy'
 
     input:

@@ -1,8 +1,8 @@
 process seqtk {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/seqtk:1.4--he4a0461_1'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-seqtk:1.4--he4a0461_1'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-seqtk:1.4--he4a0461_1'
     publishDir "${params.outdir}/${sample_id}/fasta/", mode: 'copy'                              
 
     input:

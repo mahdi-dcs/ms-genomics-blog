@@ -1,9 +1,9 @@
 process vcf_concat {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/variants/", mode: 'copy'
     // container "quay.io/biocontainers/bcftools:1.17--haef29d1_0"
-    container "phcccgenacrprd.azurecr.io/biocontainers-bcftools:1.17--haef29d1_0"
+    container "genomicsacrdev01.azurecr.io/biocontainers-bcftools:1.17--haef29d1_0"
 
     input:
     tuple val(sample_id), path("${sample_id}.snv.vcf"), path("${sample_id}.indel.vcf"), path("genotype.txt")

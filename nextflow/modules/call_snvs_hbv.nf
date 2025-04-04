@@ -1,8 +1,8 @@
 process call_snvs_hbv {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/lofreq:2.1.5--py38h794fc9e_10'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-lofreq:2.1.5--py38h794fc9e_10'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-lofreq:2.1.5--py38h794fc9e_10'
     publishDir "${params.outdir}/$sample_id/variants/", mode: 'copy'                              
 
 

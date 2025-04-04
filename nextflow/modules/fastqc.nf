@@ -1,9 +1,9 @@
 process fastqc {
-    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
+    queue 'nf-pipeline-pool-STANDARD_D4_V5-dev'
 
     tag "$sample_id"
     // container 'quay.io/biocontainers/fastqc:0.11.9--0'
-    container 'phcccgenacrprd.azurecr.io/biocontainers-fastqc:0.11.9--0'
+    container 'genomicsacrdev01.azurecr.io/biocontainers-fastqc:0.11.9--0'
     publishDir "${params.outdir}/${sample_id}/fastqc/", mode: 'copy'
 
 
