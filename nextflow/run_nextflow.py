@@ -56,11 +56,11 @@ def main():
     except Exception as e:
         logger.error(f"An error occurred in running Nextflow:\n {e}")
     
-    finally:
-        logger.info(f"Output path: {run_output_path}")
+    # finally:
+        # logger.info(f"Output path: {run_output_path}")
         # upload the .nextflow.log file to azure blob storage
-        blob_container_client.upload_blob(f"{run_output_path.replace('az://nextflow/', '')}/.nextflow.log", open(".nextflow.log", "rb"))
-        blob_container_client.upload_blob(f"{run_output_path.replace('az://nextflow/', '')}/sample_sheet.csv", open("sample_sheet.csv", "rb"))
+        # blob_container_client.upload_blob(f"{run_output_path.replace('az://nextflow/', '')}/.nextflow.log", open(".nextflow.log", "rb"))
+        # blob_container_client.upload_blob(f"{run_output_path.replace('az://nextflow/', '')}/sample_sheet.csv", open("sample_sheet.csv", "rb"))
 
 def read_sample_sheet(sample_sheet_path):
     # read the sample sheet

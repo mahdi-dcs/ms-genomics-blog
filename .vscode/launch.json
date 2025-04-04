@@ -16,7 +16,7 @@
                 "POOL_ID": "nf-runner-pool-STANDARD_DC1s_V2-dev",
                 "BATCH_ACCOUNT_URL": "https://devbatchgenomics01.canadacentral.batch.azure.com",
                 "BATCH_ACCOUNT_NAME": "devbatchgenomics01",
-                "STORAGE_ACCOUNT": "devsagenomics01",
+                "STORAGE_ACCOUNT_NAME": "devsagenomics01",
                 "MANAGED_IDENTITY_RESOURCE_ID": "/subscriptions/9169421f-8238-4d23-a41e-93319a3a3fbb/resourcegroups/blog-genomics/providers/Microsoft.ManagedIdentity/userAssignedIdentities/devbatch-umigenomics01",
                 "LOCAL_FOLDER_PATH": "${workspaceFolder}/nextflow",
                 "OUTPUT_PATH": "az://nextflow/pipeline-output/testrun",

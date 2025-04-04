@@ -39,8 +39,8 @@ RESOURCE_GROUP = os.environ.get('RESOURCE_GROUP')
 BATCH_ACCOUNT_URL = os.environ.get('BATCH_ACCOUNT_URL')
 BATCH_ACCOUNT_NAME = os.environ.get('BATCH_ACCOUNT_NAME')
 POOL_ID = os.environ.get('POOL_ID')
-STORAGE_ACCOUNT = os.environ.get('STORAGE_ACCOUNT')
-AUTOSTORAGE_ACCOUNT = os.environ.get('AUTOSTORAGE_ACCOUNT_NAME')
+STORAGE_ACCOUNT_NAME = os.environ.get('STORAGE_ACCOUNT_NAME')
+AUTOSTORAGE_ACCOUNT_NAME = os.environ.get('AUTOSTORAGE_ACCOUNT_NAME')
 KEYVAULT_NAME = os.environ.get('KEYVAULT_NAME')
 CONTAINER_NAME = "nextflow"
 LOCAL_FOLDER_PATH = os.environ.get('LOCAL_FOLDER_PATH')
@@ -102,12 +102,10 @@ def submit_job_to_batch(run_name, output_path, pipeline_run_id):
         EnvironmentSetting(name="OUTPUT_PATH", value=output_path),
         EnvironmentSetting(name="RUN_NAME", value=run_name),
         EnvironmentSetting(name="PIPELINE_RUN_ID", value=pipeline_run_id),
-        EnvironmentSetting(name="STORAGE_ACCOUNT_NAME", value=STORAGE_ACCOUNT),
-        EnvironmentSetting(name="AUTOSTORAGE_ACCOUNT_NAME", value=AUTOSTORAGE_ACCOUNT),
+        EnvironmentSetting(name="STORAGE_ACCOUNT_NAME", value=STORAGE_ACCOUNT_NAME),
+        EnvironmentSetting(name="AUTOSTORAGE_ACCOUNT_NAME", value=AUTOSTORAGE_ACCOUNT_NAME),
         EnvironmentSetting(name="KEYVAULT_NAME", value=KEYVAULT_NAME),
         EnvironmentSetting(name="BATCH_ACCOUNT_NAME", value=BATCH_ACCOUNT_NAME),
-        EnvironmentSetting(name="AZURE_STORAGE_ACCOUNT_NAME", value=STORAGE_ACCOUNT),
-        EnvironmentSetting(name="AZURE_BATCH_ACCOUNT_NAME", value=BATCH_ACCOUNT_NAME),
     ]
     
     # Create the task
@@ -137,7 +135,7 @@ batch_credential = BatchTokenCredential(BATCH_ACCOUNT_URL, batch_token.token)
 # Upload folder to Azure Blob Storage
 print("Uploading folder to Azure Blob Storage...")
 blob_service_client = BlobServiceClient(
-    account_url=f"https://{STORAGE_ACCOUNT}.blob.core.windows.net",
+    account_url=f"https://{AUTOSTORAGE_ACCOUNT_NAME}.blob.core.windows.net",
     credential=credential
 )
 

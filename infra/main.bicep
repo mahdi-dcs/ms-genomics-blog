@@ -3,9 +3,16 @@ param subnetName string = 'default'
 param privateEndpointsSubnetName string = 'private-endpoints'
 param targetEnv string = 'dev'
 param location string = 'canadacentral'
-param vnetResourceGroup string = 'genom-dev-rg'
+param vnetResourceGroupName string = 'genom-dev-rg'
 param solutionName string = 'genomics'
 param keyVaultSku string = 'Standard'
+param storageAccountName string = '${targetEnv}sa${solutionName}01'
+param batchAccountName string = '${targetEnv}batch${solutionName}01'
+param batchStorageAccountName string = '${targetEnv}bsa${solutionName}01'
+param kvName string = '${solutionName}kv${targetEnv}01'
+param containerRegistryName string = '${solutionName}acr${targetEnv}01'
+param acrPasswordSecretName string = 'acr-password-${targetEnv}'
+param batchUserManagedIdentityName string = '${targetEnv}batch-umi${solutionName}01'
 
 param deploymentName string = deployment().name
 
@@ -13,18 +20,12 @@ var defaultTags = {
   environment: targetEnv
 }
 
-var storageAccountName = '${targetEnv}sa${solutionName}01'
-var batchAccountName = '${targetEnv}batch${solutionName}01'
-var batchStorageAccountName = '${targetEnv}bsa${solutionName}01'
-var kvName = '${solutionName}kv${targetEnv}01'
-var containerRegistryName = '${solutionName}acr${targetEnv}01'
-var acrPasswordSecretName = 'acr-password-${targetEnv}'
-var batchUserManagedIdentityName = '${targetEnv}batch-umi${solutionName}01'
+
 
 // Import vnet and subnets: this template assumes that the vnet and subnets are already created as part of the Enterprise Landing Zone.
 resource vnet 'Microsoft.Network/virtualNetworks@2022-11-01' existing = {
   name: vnetName
-  scope: resourceGroup(vnetResourceGroup)
+  scope: resourceGroup(vnetResourceGroupName)
 }
 
 resource subnet 'Microsoft.Network/virtualNetworks/subnets@2022-11-01' existing = {
@@ -37,7 +38,7 @@ resource privateEndpointsSubnet 'Microsoft.Network/virtualNetworks/subnets@2022-
   parent: vnet
 }
 
-// Nextflow Storage Account
+// Nextflow I/O Storage Account
 module storage 'modules/storage/main.bicep' = {
   name: '${deploymentName}-storage'
   params: {
@@ -53,7 +54,7 @@ module storage 'modules/storage/main.bicep' = {
 }
 
 
-// Batch Account and its Managed Identity and Storage Account
+// Batch Account
 module batchStorage 'modules/storage/main.bicep' = {
   name: '${deploymentName}-batch-storage'
   params: {
@@ -68,12 +69,13 @@ module batchStorage 'modules/storage/main.bicep' = {
     isHnsEnabled: false // this is needed to be able to have version control on the pipeline references.
   }
 }
-
+// User Managed Identity for Batch
 resource batchUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
   name: batchUserManagedIdentityName
   location: location
 }
 
+// Batch Storage Account
 module batchAccountModule 'modules/batch/main.bicep' = {
   name: '${deploymentName}-batchsa'
   params: {

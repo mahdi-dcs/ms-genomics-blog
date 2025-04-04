@@ -1,6 +1,12 @@
 name: deploy-infrastructure
 
-on: [workflow_dispatch, push]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - infra/**
+  workflow_dispatch:
 
 permissions:
   id-token: write
