@@ -1,6 +1,6 @@
 name: deploy-infrastructure
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 
 permissions:
   id-token: write
@@ -10,19 +10,23 @@ jobs:
   deploy-infrastructure:
     runs-on: self-hosted
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@main
         
     - name: Login to Azure
-      uses: azure/login@v1
+      uses: azure/login@v2
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: Deploy Infrastructure using Bicep
+    - name: Deploy
       uses: azure/arm-deploy@v1
       with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./infra/main.bicep
+        failOnStdErr: false
         scope: subscription
         deploymentName: ${{ github.run_number}}
-        template: ./deploy/main.bicep
         # parameters: './deploy/parameters/prod.parameters.json'
-        region: canadacentral
