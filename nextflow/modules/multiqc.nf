@@ -1,5 +1,5 @@
 process multiqc {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/multiqc:1.25--pyhdfd78af_0'
     container 'phcccgenacrprd.azurecr.io/biocontainers-multiqc:1.25--pyhdfd78af_0'

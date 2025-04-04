@@ -1,5 +1,5 @@
 process blast {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/blast:2.13.0--hf3cf87c_0'
     container 'phcccgenacrprd.azurecr.io/biocontainers-blast:2.13.0--hf3cf87c_0'

@@ -1,5 +1,5 @@
 process alignment {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
 
     tag "$sample_id"
     // container 'quay.io/biocontainers/minimap2:2.17--hed695b0_3'

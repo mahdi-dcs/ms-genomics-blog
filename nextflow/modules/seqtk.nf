@@ -1,5 +1,5 @@
 process seqtk {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/seqtk:1.4--he4a0461_1'
     container 'phcccgenacrprd.azurecr.io/biocontainers-seqtk:1.4--he4a0461_1'

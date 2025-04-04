@@ -1,5 +1,5 @@
 process vcf_concat {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/variants/", mode: 'copy'
     // container "quay.io/biocontainers/bcftools:1.17--haef29d1_0"

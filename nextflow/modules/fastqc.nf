@@ -1,5 +1,5 @@
 process fastqc {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
 
     tag "$sample_id"
     // container 'quay.io/biocontainers/fastqc:0.11.9--0'

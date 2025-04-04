@@ -1,5 +1,5 @@
 process call_snvs {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
     tag "$sample_id"
     // container 'quay.io/biocontainers/lofreq:2.1.5--py38h794fc9e_10'
     container 'phcccgenacrprd.azurecr.io/biocontainers-lofreq:2.1.5--py38h794fc9e_10'

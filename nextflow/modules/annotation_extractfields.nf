@@ -1,5 +1,5 @@
 process annotation_extractfields {
-    queue 'nf-pool1-STANDARD_D4_V3-prd'
+    queue 'nf-pipeline-pool-STANDARD_D4_V3-dev'
     tag "$sample_id"
     publishDir "${params.outdir}/$sample_id/annotation/", mode: 'copy'
     // container 'quay.io/biocontainers/snpsift:4.3.1t--hdfd78af_3'
