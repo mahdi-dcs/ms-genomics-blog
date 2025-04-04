@@ -1,6 +1,0 @@
-{
-  "$schema": "https://aka.ms/bicep-registry-module-metadata-file-schema-v2#",
-  "name": "Azure Key Vault 'Secret User' Role assignment",
-  "summary": "Bicep module to assign Azure Key Vault the 'Secret User' role to a given principal.",
-  "owner": "PHSA"
-}
