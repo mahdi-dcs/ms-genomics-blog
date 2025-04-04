@@ -41,7 +41,7 @@ param nodeFillType string = 'Pack'
 param taskSlotsPerNode int = 4
 
 @description('VM size for the VMs running the Nextflow pipeline.')
-param pipelineVMSize string = 'STANDARD_D4_V3'
+param pipelineVMSize string = 'STANDARD_D4_V4'
 
 @description('VM size for the VMs running the Nextflow runner.')
 param nfVMSize string = 'STANDARD_DC1s_V2'
