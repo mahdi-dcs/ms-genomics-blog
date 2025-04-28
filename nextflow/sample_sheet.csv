@@ -1,0 +1,11 @@
+sample_id,input_file,genome
+HBVpos20240425,az://samples/HBVpos20240425/FAY73006_pass_barcode08_35401f01_726ce21c_1.fastq.gz,hbv
+HBVpos20240425,az://samples/HBVpos20240425/FAY73006_pass_barcode08_35401f01_726ce21c_2.fastq.gz,hbv
+HBVpos20240425,az://samples/HBVpos20240425/FAY73006_pass_barcode08_35401f01_726ce21c_3.fastq.gz,hbv
+HBVpos20240425,az://samples/HBVpos20240425/FAY73006_pass_barcode08_35401f01_726ce21c_4.fastq.gz,hbv
+HBVpos20240425,az://samples/HBVpos20240425/FAY73006_pass_barcode08_35401f01_726ce21c_6.fastq.gz,hbv
+CMVpos20240425,az://samples/CMVpos20240425/FAW10030_pass_barcode09_a717f26e_539b88ec_1.fastq.gz,cmv
+CMVpos20240425,az://samples/CMVpos20240425/FAW10030_pass_barcode09_a717f26e_539b88ec_2.fastq.gz,cmv
+CMVpos20240425,az://samples/CMVpos20240425/FAW10030_pass_barcode09_a717f26e_539b88ec_3.fastq.gz,cmv
+CMVpos20240425,az://samples/CMVpos20240425/FAY73006_pass_barcode17_35401f01_726ce21c_1.fastq.gz,cmv
+CMVpos20240425,az://samples/CMVpos20240425/FAY73006_pass_barcode17_35401f01_726ce21c_2.fastq.gz,cmv
